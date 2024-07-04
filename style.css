@@ -3,9 +3,7 @@
     50% { text-shadow: 0 0 20px rgb(71, 229, 23); }
     100% { text-shadow: 0 0 10px #20bf30; }
 }
-*{
-    font-family: Courier, 'Courier New', monospace;
-}
+
 #espaco {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
