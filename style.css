@@ -1,0 +1,89 @@
+@keyframes glow {
+    0% { text-shadow: 0 0 10px #0baf24; }
+    50% { text-shadow: 0 0 20px rgb(71, 229, 23); }
+    100% { text-shadow: 0 0 10px #20bf30; }
+}
+*{
+    font-family: Courier, 'Courier New', monospace;
+}
+#espaco {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    background-color: #000000;
+    border: 1px solid rgb(0, 174, 255);
+    height: 100vh; /* Para ocupar a altura total da janela */
+    
+}   
+#dinheiroTotal {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    display: flex;
+    /*animation: glow 1s ease-in-out infinite;  Aplica a animação de brilho */
+    background-color: black;
+    color: rgb(31, 180, 230);
+    flex-direction: column;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    border: 1px solid rgb(31, 180, 230);
+}
+#ganho{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: rgb(52, 194, 71);
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    grid-area: 2/2/4/3;
+    border: 1px solid green;
+}
+#gasto{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: rgb(204, 21, 46);
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    grid-area: 2/4/4/5;
+    border: 1px solid green;
+}
+#informacoes{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: rgb(31, 180, 230);
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    grid-area: 2/3/5/4;
+    border: 1px solid rgb(31, 180, 230);
+}   
+#tabela{
+    display: flex;
+    grid-row-start: 5;
+    grid-column-start: 2;
+    grid-column-end:5;
+    border: 1px solid green;
+}
+*{
+    margin: 1%;
+}
+@media (max-width: 1024px) {
+    #espaco {
+        display: flex;
+        flex-direction: column;
+        
+    }
+    #dinheiroTotal,
+    #ganho,
+    #gasto,
+    #informacoes,
+    #tabela{
+        flex: 1 1 auto; /* Permite que os itens cresçam e encolham conforme necessário */
+            margin: 10px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            flex: none; /* Remove o crescimento e encolhimento automático para garantir que as divs fiquem em uma coluna */
+            width: 100%; /* Garante que cada item ocupe 100% da largura do contêiner */
+    }
+
+}

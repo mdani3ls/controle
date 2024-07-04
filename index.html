@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+</head>
+<body>
+    <div id="espaco">
+        <div id="dinheiroTotal">
+            <h2>Selecione o dia principal de pagamento para servir de base: </h2>
+            <select id="diaMes" name="diaMes">
+                <!-- Opções serão adicionadas dinamicamente pelo JavaScript -->
+            </select>
+            <h1 id="dinheiro">
+                Dinheiro Total: R$ 
+            </h1>
+        </div>
+        <div id="ganho">
+            <h1>
+                Registrar Ganho
+            </h1>
+            <input type="text" id="valorInput" placeholder="Digite o valor" oninput="formatarValor(this)">
+            <label for="">Descrição da operação:</label>
+            <textarea id="descricaoOperacao" placeholder="Digite aqui a descrição da operação..."></textarea>
+    
+            <button id="salvarButton">Salvar</button>
+        </div>
+        <div id="gasto">
+            <h1>    
+                Registrar Gasto
+            </h1>
+            <input type="text" id="valorInput" placeholder="Digite o valor" oninput="formatarValor(this)">
+            <label for="">Descrição da operação:</label>
+            <textarea id="descricaoOperacao" placeholder="Digite aqui a descrição da operação..."></textarea>
+    
+            <button id="salvarButtonGasto">Salvar</button>
+        </div>
+        <div id="informacoes">
+            <h1>Informações</h1>
+            <h2 id="porDia">Dinheiro que pode gastar por dia até o dia  </h2>
+            <h2 id="qtdDias">Quantidade de dias até o próximo pagamento: </h2>
+        </div>
+        <div id="tabela"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
