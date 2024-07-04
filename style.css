@@ -11,8 +11,8 @@
     background-color: #000000;
     border: 1px solid rgb(0, 174, 255);
     height: 100vh; /* Para ocupar a altura total da janela */
-    
 }   
+
 #dinheiroTotal {
     grid-column-start: 2;
     grid-column-end: 5;
@@ -25,7 +25,8 @@
     align-items: center; /* Centraliza verticalmente */
     border: 1px solid rgb(31, 180, 230);
 }
-#ganho{
+
+#ganho {
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -35,7 +36,8 @@
     grid-area: 2/2/4/3;
     border: 1px solid green;
 }
-#gasto{
+
+#gasto {
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -45,7 +47,8 @@
     grid-area: 2/4/4/5;
     border: 1px solid green;
 }
-#informacoes{
+
+#informacoes {
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -55,33 +58,33 @@
     grid-area: 2/3/5/4;
     border: 1px solid rgb(31, 180, 230);
 }   
-#tabela{
+
+#tabela {
     display: flex;
     grid-row-start: 5;
     grid-column-start: 2;
     grid-column-end:5;
     border: 1px solid green;
 }
-*{
-    margin: 1%;
+
+* {
+    margin: 0; /* Remova a margem universal para evitar conflitos */
 }
+
 @media (max-width: 1024px) {
     #espaco {
         display: flex;
         flex-direction: column;
-        
     }
     #dinheiroTotal,
     #ganho,
     #gasto,
     #informacoes,
-    #tabela{
-        flex: 1 1 auto; /* Permite que os itens cresçam e encolham conforme necessário */
-            margin: 10px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            flex: none; /* Remove o crescimento e encolhimento automático para garantir que as divs fiquem em uma coluna */
-            width: 100%; /* Garante que cada item ocupe 100% da largura do contêiner */
+    #tabela {
+        flex: none; /* Remove o crescimento e encolhimento automático */
+        margin: 10px;
+        padding: 20px;
+        background-color: #f0f0f0; /* Certifique-se de que a cor do texto ainda seja legível */
+        width: 100%; /* Garante que cada item ocupe 100% da largura do contêiner */
     }
-
 }
