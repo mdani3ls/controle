@@ -133,6 +133,7 @@ function calcularValorQuePodeGastarPorDia(valorTotal, quantidadeDias){
     //     // Atualiza o valor no campo de entrada
     //     input.value = valor;
     // }
+
     btnSalvar.addEventListener("click", function() {
         // Obter os valores dos campos input e textarea
         const valorInput = document.getElementById("valorInput");
@@ -194,7 +195,64 @@ function calcularValorQuePodeGastarPorDia(valorTotal, quantidadeDias){
         }
         salvarLocalStorage();
     });
+    //GASTO BUTTON
+    salvarButtonGasto.addEventListener("click", function(){
+        const valorInput = document.getElementById("valorInputGasto");
+        const descricao = document.getElementById("descricaoOperacaoGasto").value;
+        // Verificar se os campos estão vazios ou nulos
+        if (!valorInput.value || !descricao) {
+            alert("Por favor, preencha todos os campos antes de salvar.");
+            return; // Sair da função se algum campo estiver vazio
+        }
+         // Remover caracteres não numéricos do valor
+         const valorNumerico = valorInput.value.replace(/[^\d,]/g, ''); // Remove tudo exceto dígitos e vírgula
     
+         // Tentar converter o valor para float
+         const valor = parseFloat(valorNumerico.replace(',', '.')); // Substitui vírgula por ponto para formatos brasileiros
+         
+         // Verificar o valor obtido antes de prosseguir
+         console.log('Valor obtido do gasto:', valor);
+         
+         // Verificar se o valor é numérico válido
+         if (isNaN(valor)) {
+             alert('Por favor, insira um valor numérico válido.');
+             return;
+        }
+        // Exibir a caixa de diálogo de confirmação padrão do navegador
+        const userConfirmed = confirm(`Valor: R$ ${valorInput.value}\nDescrição: ${descricao}\n\nVocê tem certeza que deseja salvar os dados?`);
+        
+        // Verificar se o usuário confirmou
+        if (userConfirmed) {
+            // Atualizar os dados do registroFinanceiro
+            registroFinanceiro.dinheiro_total -= valor;
+            registroFinanceiro.descricao = descricao;
+            registroFinanceiro.qtd_dias = calcularDiasAteProximoDia5(registroFinanceiro.data);
+            console.log(`dinheior que está gastando por dia antes da função: ${registroFinanceiro.dinheiro_por_dia}`)
+            registroFinanceiro.dinheiro_por_dia = calcularValorQuePodeGastarPorDia(registroFinanceiro.dinheiro_total, 
+                registroFinanceiro.qtd_dias
+            );
+            //problema qui talvez
+            //dinheiroPorDia.textContent += `${registroFinanceiro.data}: ${(registroFinanceiro.qtd_dias)}`;
+            // Atualizar o texto do elemento tituloElement
+            console.log(`Dinheiro que está gastando por dia será: ${registroFinanceiro.dinheiro_por_dia}`);
+            tituloElement.textContent = ` Dinheiro Total: R$ ${registroFinanceiro.dinheiro_total.toFixed(2).replace('.', ',')}`;
+            
+
+            dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: 
+    ${registroFinanceiro.dinheiro_por_dia}`;
+            // Limpar os campos de entrada e textarea
+            valorInput.value = "";
+            document.getElementById("descricaoOperacao").value = "";
+    
+            // Exibir mensagem de sucesso
+            alert("Dados salvos com sucesso...");
+            
+            // Aqui você pode adicionar código para salvar os dados em um banco de dados, por exemplo
+        } else {
+            alert("Ação de salvamento cancelada...");
+        }
+        salvarLocalStorage();
+    });
     //funções para atualização de ganhos e gastos
     function ganho() {
 
