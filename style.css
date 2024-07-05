@@ -1,11 +1,87 @@
+@font-face {
+    font-family: 'Orbitron';
+    src: url('fonts/static/Orbitron-Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('fonts/static/Orbitron-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+body{
+    font-family: 'Orbitron', sans-serif;
+}
 @keyframes glow {
     0% { text-shadow: 0 0 10px #0baf24; }
     50% { text-shadow: 0 0 20px rgb(71, 229, 23); }
     100% { text-shadow: 0 0 10px #20bf30; }
 }
-*{
-    font-family: Courier, 'Courier New', monospace;
+#diaMes{
+    appearance: none;
+    background-color: #222;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    color: #0f0;
+    padding: 10px 40px 10px 20px;
+    font-size: 1.2em;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
 }
+
+#diaMes:hover {
+    background-color: #333;
+    border-color: #0ff;
+    color: #0ff;
+}
+
+#diaMes:focus {
+    box-shadow: 0 0 10px #0ff;
+}
+
+#diaMes::after {
+    content: '▼';
+    font-size: 1.2em;
+    color: #0f0;
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+}
+input{
+    appearance: none;
+    background-color: #222;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    color: #0f0;
+    padding: 10px 40px 10px 20px;
+    font-size: 1.2em;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+input:hover {
+    background-color: #333;
+    border-color: #0ff;
+    color: #0ff;
+}
+
+input:focus {
+    box-shadow: 0 0 10px #0ff;
+}
+
+input::after {
+    content: '▼';
+    font-size: 1.2em;
+    color: #0f0;
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+}
+
 #espaco {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
@@ -16,6 +92,7 @@
     
 }   
 #dinheiroTotal {
+    margin: 1px;
     grid-column-start: 2;
     grid-column-end: 5;
     display: flex;
@@ -35,7 +112,7 @@
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     grid-area: 2/2/4/3;
-    border: 1px solid green;
+    border-top: 1px solid green;
 }
 #gasto{
     display: flex;
@@ -45,7 +122,7 @@
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     grid-area: 2/4/4/5;
-    border: 1px solid green;
+    border-top: 1px solid rgb(255, 0, 0);
 }
 #informacoes{
     display: flex;
@@ -69,21 +146,29 @@
 }
 @media (max-width: 1024px) {
     #espaco {
+        margin: 0;
+        background-color: rgb(0, 0, 0);
         display: flex;
         flex-direction: column;
+        width: 100%;
+        height: auto;
         
     }
-    #dinheiroTotal,
-    #ganho,
-    #gasto,
-    #informacoes,
+    #dinheiroTotal{
+        color: aqua;
+    }
+    #ganho{
+        color: rgb(4, 209, 55);
+    }
+    #gasto{
+        background-color: rgba(0, 0, 0, 0.2);
+        color: rgb(255, 0, 0);
+    }
+    #informacoes{
+
+    }
     #tabela{
-        flex: 1 1 auto; /* Permite que os itens cresçam e encolham conforme necessário */
-            margin: 10px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            flex: none; /* Remove o crescimento e encolhimento automático para garantir que as divs fiquem em uma coluna */
-            width: 100%; /* Garante que cada item ocupe 100% da largura do contêiner */
+            
     }
 
 }
