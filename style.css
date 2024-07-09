@@ -88,7 +88,7 @@ input::after {
     grid-template-rows: 20% 20% 20% 20% 20%;
     background-color: #000000;
     border: 1px solid rgb(0, 174, 255);
-    height: 100vh; /* Para ocupar a altura total da janela */
+    /*height: 100vh;  Para ocupar a altura total da janela */
     
 }   
 #dinheiroTotal {
@@ -134,15 +134,27 @@ input::after {
     grid-area: 2/3/5/4;
     border: 1px solid rgb(31, 180, 230);
 }   
-#tabela{
-    display: flex;
+#tabela {
     grid-row-start: 5;
-    grid-column-start: 2;
-    grid-column-end:5;
+    grid-column-start: 1;
+    grid-column-end: 6;
     border: 1px solid green;
+    margin-top: 20px; /* Espaço acima da tabela */
+    padding: 20px;
+    background-color: #f0f0f0;
 }
-*{
-    margin: 1%;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
 }
 @media (max-width: 1024px) {
     @font-face {

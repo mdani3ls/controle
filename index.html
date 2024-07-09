@@ -44,7 +44,21 @@
             <h2 id="porDia">Dinheiro que pode gastar por dia até o dia  </h2>
             <h2 id="qtdDias">Quantidade de dias até o próximo pagamento: </h2>
         </div>
-        <div id="tabela"></div>
+        <div id="tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Atual</th>
+                        <th>Tipo de Registro</th>
+                        <th>Dinheiro Total Antes</th>
+                        <th>Valor da Operação</th>
+                        <th>Dinheiro Total Depois</th>
+                    </tr>
+                </thead>
+                <tbody id="registro-tabela">
+                    <!-- Linhas serão adicionadas aqui dinamicamente -->
+                </tbody>
+            </table>
     </div>
     <script src="script.js"></script>
 </body>

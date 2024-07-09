@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 valorGanho: valor,
                 valorTotalAgora: registroFinanceiro.dinheiro_total
             };
+            adicionarRegistro(operacao.data_atual, operacao.tipo_operacao, operacao.valorTotalAntes, operacao.valorGanho, operacao.valorTotalAgora);
             operacoes.push(operacao);
             salvarLocalStorage();
             console.log(operacao);
@@ -236,10 +237,75 @@ document.addEventListener("DOMContentLoaded", function() {
             //localStorage.setItem(key, JSON.stringify(registroFinanceiro));
         }
     });
+    // function adicionarRegistro(data, tipo, totalAntes, valorOperacao, totalDepois) {
+    //     const tabela = document.getElementById('registro-tabela');
+    //     const novaLinha = document.createElement('tr');
+
+    //     novaLinha.innerHTML = `
+    //         <td>${data}</td>
+    //         <td>${tipo}</td>
+    //         <td>${totalAntes.toFixed(2)}</td>
+    //         <td>${valorOperacao.toFixed(2)}</td>
+    //         <td>${totalDepois.toFixed(2)}</td>
+    //     `;
+
+    //     tabela.appendChild(novaLinha);
+    // }
     function salvarLocalStorage() {
+        //localStorage.setItem(keyOperacoes, JSON.stringify(operacoes));
         localStorage.setItem(key, JSON.stringify(registroFinanceiro));
     }
-    
+    // Verifica se há dados na lista
+    function verificarDadosNaLista() {
+        const lista = JSON.parse(localStorage.getItem('operacoes')) || [];
+        return lista.length > 0;
+    }
+/////////
+// Adiciona um novo registro à lista, salva no localStorage e atualiza a tabela
+function adicionarRegistro(data, tipo, totalAntes, valorOperacao, totalDepois) {
+    // Cria um novo objeto de registro
+    const novoRegistro = {
+        data: data,
+        tipo: tipo,
+        totalAntes: totalAntes,
+        valorOperacao: valorOperacao,
+        totalDepois: totalDepois
+    };
+
+    // Obtém a lista de registros do localStorage
+    let listaRegistros = JSON.parse(localStorage.getItem('operacoes')) || [];
+
+    // Adiciona o novo registro à lista
+    listaRegistros.push(novoRegistro);
+
+    // Salva a lista atualizada no localStorage
+    localStorage.setItem('operacoes', JSON.stringify(listaRegistros));
+
+    // Atualiza a tabela na interface
+    preencherTabela();
+}
+
+// Função para preencher a tabela com os registros salvos no localStorage
+function preencherTabela() {
+    const tabela = document.getElementById('registro-tabela');
+    tabela.innerHTML = ''; // Limpa o conteúdo atual da tabela
+
+    // Obtém a lista de registros do localStorage
+    const listaRegistros = JSON.parse(localStorage.getItem('operacoes')) || [];
+
+    // Preenche a tabela com os registros
+    listaRegistros.forEach(registro => {
+        const novaLinha = document.createElement('tr');
+        novaLinha.innerHTML = `
+            <td>${registro.data}</td>
+            <td>${registro.tipo}</td>
+            <td>${registro.totalAntes.toFixed(2)}</td>
+            <td>${registro.valorOperacao.toFixed(2)}</td>
+            <td>${registro.totalDepois.toFixed(2)}</td>
+        `;
+        tabela.appendChild(novaLinha);
+    });
+}
     window.onload = function() {
         if (localStorage.getItem(key)) {
             registroFinanceiro = JSON.parse(localStorage.getItem(key));
