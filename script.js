@@ -232,6 +232,17 @@ document.addEventListener("DOMContentLoaded", function() {
             dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: 
             ${registroFinanceiro.dinheiro_por_dia.toString().padStart(2, '0')}`;
             qtd.textContent = `Quantidade de dias até o próximo pagamento:  ${registroFinanceiro.qtd_dias}`;
+
+            const operacao = {
+                tipo_operacao: 'Gasto',
+                data_atual: new Date().toLocaleString(),
+                valorTotalAntes: registroFinanceiro.dinheiro_total+valor,
+                descricao: registroFinanceiro.descricao,
+                valorGanho: valor,
+                valorTotalAgora: registroFinanceiro.dinheiro_total
+            };
+            adicionarRegistro(operacao.data_atual, operacao.tipo_operacao, operacao.valorTotalAntes, operacao.valorGanho, operacao.valorTotalAgora);
+            operacoes.push(operacao);
             salvarLocalStorage();
             // Salvar no localStorage
             //localStorage.setItem(key, JSON.stringify(registroFinanceiro));

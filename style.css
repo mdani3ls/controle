@@ -157,44 +157,64 @@ th, td {
     text-align: left;
 }
 @media (max-width: 1024px) {
-    @font-face {
-        font-family: 'Orbitron';
-        src: url('fonts/static/Orbitron-Regular.ttf') format('truetype');
-        font-weight: normal;
-    }
-    
-    @font-face {
-        font-family: 'Orbitron';
-        src: url('fonts/static/Orbitron-Bold.ttf') format('truetype');
-        font-weight: bold;
-    }
-    body{
+    body {
         font-family: 'Orbitron', sans-serif;
     }
+    
     #espaco {
         margin: 0;
         background-color: rgb(0, 0, 0);
         display: flex;
         flex-direction: column;
-        width: 100%;
-        height: auto;
-        
+        width: 100%; /* Garante que o conteúdo ocupe toda a largura */
+        height: auto; /* Permite que o conteúdo tenha altura variável conforme o conteúdo */
+        overflow-x: auto; /* Adiciona uma barra de rolagem horizontal se necessário */
     }
-    #dinheiroTotal{
+
+    #dinheiroTotal {
         color: aqua;
+        grid-column-start: 1;
+        grid-column-end: 6; /* Expandir para ocupar todas as colunas */
     }
-    #ganho{
+
+    #ganho {
         color: rgb(4, 209, 55);
+        grid-area: 3/1/4/4; /* Ajustar a área na grade */
     }
-    #gasto{
+
+    #gasto {
         background-color: rgba(0, 0, 0, 0.2);
         color: rgb(255, 0, 0);
-    }
-    #informacoes{
-
-    }
-    #tabela{
-            
+        grid-area: 3/4/4/7; /* Ajustar a área na grade */
     }
 
+    #informacoes {
+        color: rgb(31, 180, 230);
+        grid-area: 4/2/5/6; /* Ajustar a área na grade */
+    }
+
+    #tabela {
+        grid-row-start: 5;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        border: 1px solid green;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+        overflow-x: auto; /* Adiciona uma barra de rolagem horizontal se necessário */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
 }
