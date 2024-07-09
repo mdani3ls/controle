@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
         qtd_dias: 0, // Substitua pela quantidade de dias desejada
         descricao: "Descrição do registro financeiro" // Substitua pela descrição desejada
     };
-
+    let operacoes = [];
     // Nome da chave no localStorage
     const key = 'registroFinanceiro';
-    
+    const keyOperacoes = 'operacoes';
     const diaPadrao = 5;
     // Selecionar os elementos pelo seu id
     let tituloElement = document.getElementById("dinheiro");
@@ -127,10 +127,10 @@ document.addEventListener("DOMContentLoaded", function() {
     btnSalvar.addEventListener("click", function() {
         // Obter os valores dos campos input e textarea
         const valorInput = document.getElementById("valorInput");
-        const descricao = document.getElementById("descricaoOperacao").value;
+        const descricao = document.getElementById("descricaoOperacao");
     
         // Verificar se os campos estão vazios ou nulos
-        if (!valorInput.value || !descricao) {
+        if (!valorInput.value || !descricao.value) {
             alert("Por favor, preencha todos os campos antes de salvar.");
             return; // Sair da função se algum campo estiver vazio
         }
@@ -151,35 +151,45 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         // Exibir a caixa de diálogo de confirmação padrão do navegador
-        const userConfirmed = confirm(`Valor: R$ ${valorInput.value}\nDescrição: ${descricao}\n\nVocê tem certeza que deseja salvar os dados?`);
+        const userConfirmed = confirm(`Valor: R$ ${valorInput.value}\nDescrição: ${descricao.value}\n\nVocê tem certeza que deseja salvar os dados?`);
         
         if (userConfirmed) {
             // Salvar os dados
             registroFinanceiro.dinheiro_total += valor;
-            registroFinanceiro.descricao = descricao;
-
+            registroFinanceiro.descricao = descricao.value;
+            valorInput.value = ""; // Corrigido: usar `value` para limpar o campo de input
+            descricao.value = "";
             // Atualizar a quantidade de dias até o próximo pagamento
             registroFinanceiro.qtd_dias = calcularDiasAteProximoDia5(registroFinanceiro.data);
-
             // Atualizar o valor que pode gastar por dia
             registroFinanceiro.dinheiro_por_dia = calcularValorQuePodeGastarPorDia(registroFinanceiro.dinheiro_total, registroFinanceiro.qtd_dias);
-
             // Atualizar os elementos de texto
             tituloElement.textContent =  `Dinheiro Total: R$ ${registroFinanceiro.dinheiro_total.toFixed(2).replace('.', ',')}`;
             dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: 
             ${registroFinanceiro.dinheiro_por_dia.toString().padStart(2, '0')}`;
             qtd.textContent = `Quantidade de dias até o próximo pagamento:  ${registroFinanceiro.qtd_dias}`;
 
+            const operacao = {
+                tipo_operacao: 'Ganho',
+                data_atual: new Date().toLocaleString(),
+                valorTotalAntes: registroFinanceiro.dinheiro_total-valor,
+                descricao: registroFinanceiro.descricao,
+                valorGanho: valor,
+                valorTotalAgora: registroFinanceiro.dinheiro_total
+            };
+            operacoes.push(operacao);
+            salvarLocalStorage();
+            console.log(operacao);
             // Salvar no localStorage
-            localStorage.setItem(key, JSON.stringify(registroFinanceiro));
+            //localStorage.setItem(key, JSON.stringify(registroFinanceiro));
         }
     });
     //botao do gasto 
     salvarButtonGasto.addEventListener("click", function() {
         // Obter os valores dos campos input e textarea
         const valorInput = document.getElementById("valorInputGasto");
-        const descricao = document.getElementById("descricaoOperacaoGasto").value;
-    
+        const descricao = document.getElementById("descricaoOperacaoGasto");
+        console.log("passou por aqui o código ( valorinput e descricao do gasto(");
         // Verificar se os campos estão vazios ou nulos
         if (!valorInput.value || !descricao) {
             alert("Por favor, preencha todos os campos antes de salvar.");
@@ -202,13 +212,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         // Exibir a caixa de diálogo de confirmação padrão do navegador
-        const userConfirmed = confirm(`Valor: R$ ${valorInput.value}\nDescrição: ${descricao}\n\nVocê tem certeza que deseja salvar os dados?`);
+        const userConfirmed = confirm(`Valor: R$ ${valorInput.value}\nDescrição: ${descricao.value}\n\nVocê tem certeza que deseja salvar os dados?`);
         
         if (userConfirmed) {
             // Salvar os dados
             registroFinanceiro.dinheiro_total -= valor;
             registroFinanceiro.descricao = descricao;
-
+            valorInput.value = ""; // Corrigido: usar `value` para limpar o campo de input
+            descricao.value = "";
             // Atualizar a quantidade de dias até o próximo pagamento
             registroFinanceiro.qtd_dias = calcularDiasAteProximoDia5(registroFinanceiro.data);
 
@@ -220,9 +231,24 @@ document.addEventListener("DOMContentLoaded", function() {
             dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: 
             ${registroFinanceiro.dinheiro_por_dia.toString().padStart(2, '0')}`;
             qtd.textContent = `Quantidade de dias até o próximo pagamento:  ${registroFinanceiro.qtd_dias}`;
-
+            salvarLocalStorage();
             // Salvar no localStorage
-            localStorage.setItem(key, JSON.stringify(registroFinanceiro));
+            //localStorage.setItem(key, JSON.stringify(registroFinanceiro));
         }
     });
+    function salvarLocalStorage() {
+        localStorage.setItem(key, JSON.stringify(registroFinanceiro));
+    }
+    
+    window.onload = function() {
+        if (localStorage.getItem(key)) {
+            registroFinanceiro = JSON.parse(localStorage.getItem(key));
+            tituloElement.textContent = `Dinheiro Total: R$ ${registroFinanceiro.dinheiro_total}`;
+            dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: ${registroFinanceiro.dinheiro_por_dia}`;
+            qtd.textContent = `Quantidade de dias até o próximo pagamento: ${registroFinanceiro.qtd_dias}`;
+            selectDia.value = registroFinanceiro.data.toString().padStart(2, '0');
+        } else {
+            salvarLocalStorage();
+        }
+    };
 });
