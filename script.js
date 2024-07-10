@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 valorGanho: valor,
                 valorTotalAgora: registroFinanceiro.dinheiro_total
             };
-            adicionarRegistro(operacao.data_atual, operacao.tipo_operacao, operacao.valorTotalAntes, operacao.valorGanho, operacao.valorTotalAgora);
+            adicionarRegistro(operacao.data_atual, operacao.tipo_operacao, operacao.descricao, operacao.valorTotalAntes, operacao.valorGanho, operacao.valorTotalAgora);
             operacoes.push(operacao);
             salvarLocalStorage();
             console.log(operacao);
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (userConfirmed) {
             // Salvar os dados
             registroFinanceiro.dinheiro_total -= valor;
-            registroFinanceiro.descricao = descricao;
+            registroFinanceiro.descricao = descricao.value;
             valorInput.value = ""; // Corrigido: usar `value` para limpar o campo de input
             descricao.value = "";
             // Atualizar a quantidade de dias até o próximo pagamento
@@ -236,12 +236,12 @@ document.addEventListener("DOMContentLoaded", function() {
             const operacao = {
                 tipo_operacao: 'Gasto',
                 data_atual: new Date().toLocaleString(),
-                valorTotalAntes: registroFinanceiro.dinheiro_total+valor,
                 descricao: registroFinanceiro.descricao,
+                valorTotalAntes: registroFinanceiro.dinheiro_total+valor,
                 valorGanho: valor,
                 valorTotalAgora: registroFinanceiro.dinheiro_total
             };
-            adicionarRegistro(operacao.data_atual, operacao.tipo_operacao, operacao.valorTotalAntes, operacao.valorGanho, operacao.valorTotalAgora);
+            adicionarRegistro(operacao.data_atual, operacao.tipo_operacao, operacao.descricao, operacao.valorTotalAntes, operacao.valorGanho, operacao.valorTotalAgora);
             operacoes.push(operacao);
             salvarLocalStorage();
             // Salvar no localStorage
@@ -273,11 +273,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 /////////
 // Adiciona um novo registro à lista, salva no localStorage e atualiza a tabela
-function adicionarRegistro(data, tipo, totalAntes, valorOperacao, totalDepois) {
+function adicionarRegistro(data, tipo, descricao, totalAntes, valorOperacao, totalDepois) {
     // Cria um novo objeto de registro
     const novoRegistro = {
         data: data,
         tipo: tipo,
+        descricao: descricao,
         totalAntes: totalAntes,
         valorOperacao: valorOperacao,
         totalDepois: totalDepois
@@ -310,6 +311,7 @@ function preencherTabela() {
         novaLinha.innerHTML = `
             <td>${registro.data}</td>
             <td>${registro.tipo}</td>
+            <td>${registro.descricao}</td>
             <td>${registro.totalAntes.toFixed(2)}</td>
             <td>${registro.valorOperacao.toFixed(2)}</td>
             <td>${registro.totalDepois.toFixed(2)}</td>
@@ -319,6 +321,7 @@ function preencherTabela() {
 }
     window.onload = function() {
         if (localStorage.getItem(key)) {
+            preencherTabela();
             registroFinanceiro = JSON.parse(localStorage.getItem(key));
             tituloElement.textContent = `Dinheiro Total: R$ ${registroFinanceiro.dinheiro_total}`;
             dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: ${registroFinanceiro.dinheiro_por_dia}`;
