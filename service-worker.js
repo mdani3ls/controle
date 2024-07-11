@@ -4,9 +4,10 @@ self.addEventListener('install', (event) => {
         return cache.addAll([
           '/',
           '/index.html',
-          '/styles.css',
+          '/style.css',
           '/script.js',
           '/manifest.json',
+          '/fonts'
           // Adicione aqui todos os arquivos que precisam ser cacheados
         ]);
       })
