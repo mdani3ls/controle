@@ -1,16 +1,11 @@
 {
-<<<<<<< HEAD
-  "name": "control",
-  "short_name": "controle",
-=======
   "name": "imc",
-  "short_name": "control",
->>>>>>> c91a94f8e36ee09dae5233c77277ece9d2926b4d
+  "short_name": "Calculator",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
   "Scope": "/",
-  "start_url": "https://mdani3ls.github.io/controle/",
+  "start_url": "https://mdani3ls.github.io/pwa/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",

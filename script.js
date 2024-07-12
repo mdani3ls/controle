@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('/service-worker.js')
-//       .then((registration) => {
-//         console.log('Service Worker registrado com sucesso:', registration);
-//       })
-//       .catch((error) => {
-//         console.log('Falha ao registrar o Service Worker:', error);
-//       });
-//   }
-window.onload = () => {
-    'use strict';
-=======
+
 window.onload = () => {
   'use strict';
 
@@ -19,13 +7,7 @@ window.onload = () => {
              .register('./service-worker.js');
   }
 }
->>>>>>> c91a94f8e36ee09dae5233c77277ece9d2926b4d
-  
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-               .register('./service-worker.js');
-    }
-  }
+
 document.addEventListener("DOMContentLoaded", function() {
    
     // Criando o objeto com as propriedades especificadas
