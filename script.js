@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // if ('serviceWorker' in navigator) {
 //     navigator.serviceWorker.register('/service-worker.js')
 //       .then((registration) => {
@@ -9,6 +10,16 @@
 //   }
 window.onload = () => {
     'use strict';
+=======
+window.onload = () => {
+  'use strict';
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('./service-worker.js');
+  }
+}
+>>>>>>> c91a94f8e36ee09dae5233c77277ece9d2926b4d
   
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -16,6 +27,7 @@ window.onload = () => {
     }
   }
 document.addEventListener("DOMContentLoaded", function() {
+   
     // Criando o objeto com as propriedades especificadas
     let registroFinanceiro = {
         dinheiro_total: 0, // Substitua pelo valor desejado

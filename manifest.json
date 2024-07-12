@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "control",
   "short_name": "controle",
+=======
+  "name": "imc",
+  "short_name": "control",
+>>>>>>> c91a94f8e36ee09dae5233c77277ece9d2926b4d
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
