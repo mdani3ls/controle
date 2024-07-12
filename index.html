@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="manifest" href="./manifest.json">
     <meta http-equiv="Content-Security-Policy" content="img-src data: https://mdani3ls.github.io/;">
 
 
@@ -13,7 +13,7 @@
 <body>
     <script>
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('service-worker.js')
+          navigator.serviceWorker.register('./service-worker.js')
             .then((registration) => {
               console.log('Service Worker registered with scope:', registration.scope);
             })
@@ -74,7 +74,7 @@
                 </tbody>
             </table>
     </div>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
   
 </body>
 </html>
