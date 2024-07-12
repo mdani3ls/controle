@@ -7,7 +7,14 @@
 //         console.log('Falha ao registrar o Service Worker:', error);
 //       });
 //   }
+window.onload = () => {
+    'use strict';
   
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('./service-worker.js');
+    }
+  }
 document.addEventListener("DOMContentLoaded", function() {
     // Criando o objeto com as propriedades especificadas
     let registroFinanceiro = {
@@ -329,16 +336,4 @@ function preencherTabela() {
         tabela.appendChild(novaLinha);
     });
 }
-    window.onload = function() {
-        if (localStorage.getItem(key)) {
-            preencherTabela();
-            registroFinanceiro = JSON.parse(localStorage.getItem(key));
-            tituloElement.textContent = `Dinheiro Total: R$ ${registroFinanceiro.dinheiro_total}`;
-            dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: ${registroFinanceiro.dinheiro_por_dia}`;
-            qtd.textContent = `Quantidade de dias até o próximo pagamento: ${registroFinanceiro.qtd_dias}`;
-            selectDia.value = registroFinanceiro.data.toString().padStart(2, '0');
-        } else {
-            salvarLocalStorage();
-        }
-    };
 });
