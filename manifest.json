@@ -1,11 +1,11 @@
 {
-  "name": "controleGastos",
-  "short_name": "controle",
+  "name": "imc",
+  "short_name": "control",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
   "Scope": "/",
-  "start_url": "./index.html",
+  "start_url": "https://mdani3ls.github.io/controle/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
