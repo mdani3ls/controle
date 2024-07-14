@@ -5,7 +5,7 @@ var filesToCache = [
   './style.css',
   './script.js',
   './manifest.json',
-  './main.js'
+  
 ];
 
 /* Start the service worker and cache all of the app's content */
