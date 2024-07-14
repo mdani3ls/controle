@@ -3,12 +3,12 @@
   "short_name": "Controle",
   "icons": [
     {
-      "src": "/path/to/icon-192x192.png",
+      "src": "/icons/im1.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/path/to/icon-512x512.png",
+      "src": "/icons/im2.png",
       "type": "image/png",
       "sizes": "512x512"
     }
