@@ -1,7 +1,14 @@
 
 
 document.addEventListener("DOMContentLoaded", function() {
-   
+    window.onload = () => {
+        'use strict';
+      
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+                   .register('/service-worker.js');
+        }
+      }
     // Criando o objeto com as propriedades especificadas
     let registroFinanceiro = {
         dinheiro_total: 0, // Substitua pelo valor desejado
