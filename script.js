@@ -1,12 +1,8 @@
 
-window.onload = function() {
-    // Chame a sua função aqui
-    preencherTabela();
-};
 
 
 document.addEventListener("DOMContentLoaded", function() {
-
+preencherTabela();
     // Criando o objeto com as propriedades especificadas
     let registroFinanceiro = {
         dinheiro_total: 0, // Substitua pelo valor desejado
