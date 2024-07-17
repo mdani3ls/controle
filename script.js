@@ -300,7 +300,17 @@ function adicionarRegistro(data, tipo, descricao, totalAntes, valorOperacao, tot
     // Atualiza a tabela na interface
     preencherTabela();
 }
-
+window.onload = function() {
+        if (localStorage.getItem(key)) {
+            registroFinanceiro = JSON.parse(localStorage.getItem(key));
+            tituloElement.textContent = `Dinheiro Total: R$ ${registroFinanceiro.dinheiro_total}`;
+            dinheiroPorDia.textContent = `Dinheiro que pode gastar por dia até o dia ${registroFinanceiro.data}: ${registroFinanceiro.dinheiro_por_dia}`;
+            qtd.textContent = `Quantidade de dias até o próximo pagamento: ${registroFinanceiro.qtd_dias}`;
+            selectDia.value = registroFinanceiro.data.toString().padStart(2, '0');
+        } else {
+            salvarLocalStorage();
+        }
+    };
 // Função para preencher a tabela com os registros salvos no localStorage
 function preencherTabela() {
     
