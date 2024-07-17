@@ -303,6 +303,7 @@ function adicionarRegistro(data, tipo, descricao, totalAntes, valorOperacao, tot
 
 // Função para preencher a tabela com os registros salvos no localStorage
 function preencherTabela() {
+    tituloElement.textContent =  `Dinheiro Total: R$ ${registroFinanceiro.dinheiro_total.toFixed(2).replace('.', ',')}`;
     const tabela = document.getElementById('registro-tabela');
     tabela.innerHTML = ''; // Limpa o conteúdo atual da tabela
 
